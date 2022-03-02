@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SimpleApp</string>
+    <string name="sinav1">1. sınav notu</string>
+    <string name="sinav2">2. sınav notu</string>
+    <string name="hesapla">HESAPLA</string>
+    <string name="sonucText">Sonuc</string>
+</resources>
