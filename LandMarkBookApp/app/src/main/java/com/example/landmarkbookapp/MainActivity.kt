@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         landmarkList.add(rome)
         landmarkList.add(london)
         landmarkList.add(eiffel)
-/*
+
         val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landmarkList.map { landmark ->landmark.name})
         binding.listView.adapter = adapter
         binding.listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
- */
+ 
     }
 }
