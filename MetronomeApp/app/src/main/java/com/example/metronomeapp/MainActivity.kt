@@ -21,15 +21,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        buttonPlay = findViewById(R.id.buttonPlay)
-        buttonStop = findViewById(R.id.buttonStop)
-        
-        buttonPlay.setOnClickListener {
-            playaudio()
-        }
-        buttonStop.setOnClickListener {
-            pauseaudio()
-        }
+
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener
 
     {
@@ -54,10 +46,26 @@ class MainActivity : AppCompatActivity() {
 
 
     })
+        buttonPlay = findViewById(R.id.buttonPlay)
+        buttonStop = findViewById(R.id.buttonStop)
+
+        buttonPlay.setOnClickListener {
+            if (seekBar.progress ==100)
+            {
+                playaudio(" https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
+            }
+            if (seekBar.progress==80)
+            {
+                playaudio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3")
+            }
+        }
+        buttonStop.setOnClickListener {
+            pauseaudio()
+        }
 
 }
-    private fun playaudio() {
-        val audioURL ="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+    private fun playaudio(audioURL: String) {
+
         mediaPlayer = MediaPlayer()
         mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
 
