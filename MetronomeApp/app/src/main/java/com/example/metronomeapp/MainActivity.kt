@@ -21,43 +21,53 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener
+
+        {
+            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                bpm.text = progress.toString() +""+ "BPM"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                if (seekBar != null)
+                {
+                    startPoint = seekBar.progress
+                }
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                if(seekBar!= null)
+                {
+                    endPoint = seekBar.progress
+                }
+                Toast.makeText(this@MainActivity,"changed by % +${endPoint-startPoint}",Toast.LENGTH_LONG)
+            }
+
+
+        })
+    }
+    override fun onResume() {
+        super.onResume()
         buttonPlay = findViewById(R.id.buttonPlay)
         buttonStop = findViewById(R.id.buttonStop)
-        
+
         buttonPlay.setOnClickListener {
-            playaudio()
+            if (seekBar.progress ==100)
+            {
+                playaudio(" https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
+            }
+            if (seekBar.progress==80)
+            {
+                playaudio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3")
+            }
         }
         buttonStop.setOnClickListener {
             pauseaudio()
         }
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener
+    }
+    private fun playaudio(audioURL: String) {
 
-    {
-        override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-            bpm.text = progress.toString() +""+ "BPM"
-        }
-
-        override fun onStartTrackingTouch(seekBar: SeekBar?) {
-        if (seekBar != null)
-        {
-            startPoint = seekBar.progress
-        }
-        }
-
-        override fun onStopTrackingTouch(p0: SeekBar?) {
-        if(seekBar!= null)
-        {
-            endPoint = seekBar.progress
-        }
-            Toast.makeText(this@MainActivity,"changed by % +${endPoint-startPoint}",Toast.LENGTH_LONG)
-        }
-
-
-    })
-
-}
-    private fun playaudio() {
-        val audioURL ="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
         mediaPlayer = MediaPlayer()
         mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
 
