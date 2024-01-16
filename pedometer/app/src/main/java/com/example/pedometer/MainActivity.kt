@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         loadData()
         resetSteps()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
